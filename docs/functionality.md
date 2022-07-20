@@ -1,4 +1,4 @@
-# Api functionality
+# Referral
 
 - Add referral
 - Add analysis result
@@ -8,3 +8,6 @@
 - Get analysis info
 - Get study info
 
+# User
+- Login
+- Logout
