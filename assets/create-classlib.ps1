@@ -1,7 +1,7 @@
 $projectName  = $args[0]
 $relativePath = $args[1]
-Write-Output "Project name $projectName"
-Write-Output "Path $projectName"
+Write-Output "Project name: $projectName"
+Write-Output "Path: $projectName"
 $sourceFolder = ".\src\"
 $testsFolder  = ".\tests\"
 $unitExt      = ".Tests.Unit"
