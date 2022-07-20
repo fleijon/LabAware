@@ -1,0 +1,12 @@
+@startuml
+
+entity Sample {
+    Id: Guid
+    Location: str
+}
+
+entity Location {
+    Name: str
+}
+
+@enduml
