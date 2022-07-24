@@ -21,24 +21,23 @@ public static class AddReferral
             _store = store;
         }
 
-        public async Task<ErrorOr<Created>> Handle(Request request, CancellationToken cancellationToken) =>
-            await _store.AddReferral(request.Referral.Map<Store.Referral>());
+        public Task<ErrorOr<Created>> Handle(Request request, CancellationToken cancellationToken) =>
+            _store.AddReferral(request.Referral.Map<Store.Referral>());
     }
 }
 
 public static class Mapper
 {
     public static Store.Referral Map<T>(this AddReferral.Referral referral) where T : Store.Referral =>
-        new Store.Referral(
-            referral.Id,
+        new(referral.Id,
             referral.PatientInfo.Map<Store.PatientInfo>(),
             new Study(referral.Study),
             referral.Samples.Select(s => s.Map<Store.Sample>()).ToList());
 
     public static Store.PatientInfo Map<T>(this AddReferral.PatientInfo patientInfo) where T : Store.PatientInfo =>
-        new Store.PatientInfo(patientInfo.Id, patientInfo.Name, patientInfo.BirthDate);
+        new(patientInfo.Id, patientInfo.Name, patientInfo.BirthDate);
 
     public static Store.Sample Map<T>(this AddReferral.Sample sample) where T : Store.Sample =>
-        new Sample(sample.Id, sample.SampleType);
+        new(sample.Id, sample.SampleType);
 
 }

@@ -1,4 +1,5 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿<Router AppAssembly="@typeof(App).Assembly"
+        AdditionalAssemblies="@_additionalAssemblies">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -10,3 +11,9 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+    public List<System.Reflection.Assembly> _additionalAssemblies = new List<System.Reflection.Assembly>{
+            typeof(LabAware.Referral.Features.ReferralInstall).Assembly
+        };
+}

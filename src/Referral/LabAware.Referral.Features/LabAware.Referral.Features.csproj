@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -9,6 +9,9 @@
 		<PackageReference Include="MediatR" Version="10.0.1"/>
 		<PackageReference Include="FluentAssertions" Version="6.7.0"/>
 		<PackageReference Include="AutoFixture.Xunit2" Version="4.17.0"/>
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1"/>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.7"/>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.7"/>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\LabAware.Referral.Store\LabAware.Referral.Store.csproj"/>
