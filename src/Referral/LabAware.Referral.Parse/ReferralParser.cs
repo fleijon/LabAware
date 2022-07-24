@@ -1,16 +1,26 @@
+using ErrorOr;
+
 namespace LabAware.Referral.Parse;
 
 public class ReferralParser : IReferralParser
 {
-    public Task<object> Parse(Stream content, string format, int version) =>
+
+    public Task<ErrorOr<Referral>> Parse(Stream content, string format, int version, CancellationToken token) =>
         format.Replace(".", "").ToUpperInvariant() switch
         {
             "JSON" => JsonContent(content),
             _ => throw new InvalidOperationException($"Format '{format}' is not recognized as a valid referral format.")
         };
 
-    private static Task<object> JsonContent(Stream content)
+    private static async Task<ErrorOr<Referral>> JsonContent(Stream content)
     {
-        throw new NotImplementedException();
+        try
+        {
+            throw new NotImplementedException();
+        }
+        catch (Exception ex)
+        {
+            return Error.Failure(ex.Message);
+        }
     }
 }

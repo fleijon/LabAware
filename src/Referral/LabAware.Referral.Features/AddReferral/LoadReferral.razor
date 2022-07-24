@@ -3,11 +3,12 @@
 <PageTitle>Load referral</PageTitle>
 
 @using MediatR;
-@inject IMediator mediator;
+@using Microsoft.AspNetCore.Components.Forms
+@inject IMediator _mediator;
 
-<h1>Weather forecast</h1>
+<h1>Load patient referral</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
+<InputFile OnChange="@LoadFiles" />
 
 @code {
 
@@ -15,4 +16,37 @@
     {
         return Task.CompletedTask;
     }
+
+    private async void LoadFiles(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            await LoadFilesTask(e);
+        }
+        catch (System.Exception ex)
+        {
+            // TODO: Handle
+            throw;
+        }
+    }
+
+    private async Task LoadFilesTask(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        using var rs = file.OpenReadStream();
+        var parsedContentResult = await _mediator.Send(new ParseReferralFile.Request(rs, "json", 1));
+
+        parsedContentResult.Switch(
+            (parsedContent) => PopulateForm(parsedContent),
+            (errors) => NotifyUserOfError(errors)
+        );
+    }
+
+    private void PopulateForm(ParseReferralFile.Referral referral)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void NotifyUserOfError(List<ErrorOr.Error> errors) => throw new NotImplementedException();
+
 }

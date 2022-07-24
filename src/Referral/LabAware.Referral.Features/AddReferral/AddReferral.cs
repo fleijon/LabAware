@@ -24,10 +24,6 @@ public static class AddReferral
         public Task<ErrorOr<Created>> Handle(Request request, CancellationToken cancellationToken) =>
             _store.AddReferral(request.Referral.Map<Store.Referral>());
     }
-}
-
-public static class Mapper
-{
     public static Store.Referral Map<T>(this AddReferral.Referral referral) where T : Store.Referral =>
         new(referral.Id,
             referral.PatientInfo.Map<Store.PatientInfo>(),
