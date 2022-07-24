@@ -6,7 +6,7 @@
         {
             "label": "build",
             "command": "dotnet",
-            "type": "shell",
+            "type": "process",
             "args": [
                 "build",
                 "${workspaceFolder}/src/App/LabAware.Host/LabAware.Host.csproj",
@@ -19,6 +19,19 @@
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/src/App/LabAware.Host/LabAware.Host.csproj",
+            ],
+            "problemMatcher": "$msCompile",
+            "options": { "cwd": "${workspaceFolder}/src/App/LabAware.Host/" },
         }
     ]
 }
