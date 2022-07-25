@@ -7,34 +7,39 @@
       {
         "name": ".NET Core Attach",
         "type": "coreclr",
-        "request": "attach"
+        "request": "attach",
+        "processId": "${command:pickProcess}"
       },
       {
-        "name": "debug-hot-reload",
+        "name": "debug",
         "type": "coreclr",
         "request": "launch",
-        "preLaunchTask": "watch",
-        // If you have changed target frameworks, make sure to update the program path.
+        "preLaunchTask": "build",
         "program": "${workspaceFolder}/src/App/LabAware.Host/bin/Debug/net6.0/LabAware.Host.dll",
-        "args": [
-              "watch",
-              "debug",
-              "--project",
-              ".",
-              "--verbose" // Let's us confirm browser connects with hot reload capabilities
-          ],
         "cwd": "${workspaceFolder}/src/App/LabAware.Host",
         "stopAtEntry": false,
-        // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
         "serverReadyAction": {
             "action": "openExternally",
             "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
         },
         "env": {
             "ASPNETCORE_ENVIRONMENT": "Development"
+        }
+      },
+      {
+        "name": "hot-reload",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "build-watch",
+        "program": "${workspaceFolder}/src/App/LabAware.Host/bin/Debug/net6.0/LabAware.Host.dll",
+        "cwd": "${workspaceFolder}/src/App/LabAware.Host",
+        "stopAtEntry": false,
+        "serverReadyAction": {
+            "action": "openExternally",
+            "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
         },
-        "sourceFileMap": {
-            "/Views": "${workspaceFolder}/Views"
+        "env": {
+            "ASPNETCORE_ENVIRONMENT": "Development"
         }
       }
     ]

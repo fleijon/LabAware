@@ -32,6 +32,13 @@
             ],
             "problemMatcher": "$msCompile",
             "options": { "cwd": "${workspaceFolder}/src/App/LabAware.Host/" },
+        },
+        {
+            "label": "build-watch",
+            "dependsOn": [
+                "build",
+                "watch"
+            ]
         }
     ]
 }
