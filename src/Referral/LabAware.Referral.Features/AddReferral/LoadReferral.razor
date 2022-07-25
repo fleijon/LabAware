@@ -1,17 +1,27 @@
 @page "/load-referral"
 
-<PageTitle>Load referral</PageTitle>
+<PageTitle>Load Referral</PageTitle>
 
 @using MediatR;
-@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Forms;
+@using Microsoft.AspNetCore.Components.Web;
 @inject IMediator _mediator;
 
-<h1>Load patient referral</h1>
+<h1>Load patient referrals</h1>
 
 <InputFile OnChange="@LoadFiles" />
 
+<EditForm Model="@Referral">
+    <DataAnnotationsValidator />
+
+    <InputText id="study" @bind-Value="Referral.Study" />
+
+    <button type="submit">Add referral</button>
+</EditForm>
+
 @code {
 
+    public ReferralViewModel Referral = new();
     protected override Task OnInitializedAsync()
     {
         return Task.CompletedTask;
@@ -44,7 +54,7 @@
 
     private void PopulateForm(ParseReferralFile.Referral referral)
     {
-        throw new NotImplementedException();
+        Referral = referral.Map<ReferralViewModel>();
     }
 
     private void NotifyUserOfError(List<ErrorOr.Error> errors) => throw new NotImplementedException();
