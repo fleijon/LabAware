@@ -16,10 +16,7 @@ public static class AddReferral
     {
         private readonly IStore _store;
 
-        public Handler(IStore store)
-        {
-            _store = store;
-        }
+        public Handler(IStore store) => _store = store;
 
         public Task<ErrorOr<Created>> Handle(Request request, CancellationToken cancellationToken) =>
             _store.AddReferral(request.Referral.Map<Store.Referral>());
